@@ -9,7 +9,7 @@ class Playlist extends Component{
                 <h3>{this.props.playlist.name}</h3>
                 <ul>
                     {this.props.playlist.songs.map(song => 
-                        <li>{song.name}</li>    
+                        <li key={Math.random()}>{song.name}</li>    
                     )}
                 </ul>
             </div>

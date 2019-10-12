@@ -47,7 +47,8 @@ let fakeServerData = {
 
 class App extends Component{
   state = {
-    serverData: fakeServerData
+    serverData: {},
+    filterString: ''
   }
 
   componentDidMount(){
@@ -67,12 +68,15 @@ class App extends Component{
           </h1>
           <PlaylistCounter playlists={this.state.serverData.user.playlists}/>
           <HoursCounter playlists={this.state.serverData.user.playlists}/>
-          <Filter/>
-          {this.state.serverData.user.playlists.map( playlist => 
-            <Playlist playlist={playlist}/>
+          <Filter onTextChange={text => this.setState({filterString: text})}/>
+          {this.state.serverData.user.playlists.filter(playlist => 
+            playlist.name.toLowerCase().includes(
+              this.state.filterString.toLowerCase())
+          ).map( playlist => 
+            <Playlist playlist={playlist} key={Math.random()}/>
           )
           }
-        </div> : <h1>Loading...</h1>
+        </div> : <div className="lds-hourglass"></div>
         }
       </div>
     )

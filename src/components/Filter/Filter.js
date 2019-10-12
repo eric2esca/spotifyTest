@@ -6,7 +6,11 @@ class Filter extends Component{
         return(
             <div className='filter'>
                 <img />
-                <input type="text"/>
+                <input 
+                    type="text" 
+                    onKeyUp={event => 
+                        this.props.onTextChange(event.target.value)}
+                />
                 Filter
             </div>
         );
