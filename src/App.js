@@ -15,6 +15,8 @@ class App extends Component{
   componentDidMount(){
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
+    if(!accessToken)
+      return;
 
     fetch('https://api.spotify.com/v1/me', {
       headers: {'Authorization': 'Bearer ' + accessToken}
@@ -64,7 +66,11 @@ class App extends Component{
             <Playlist playlist={playlist} key={Math.random()}/>
           )}
         </div> : <button 
-                  onClick={() => window.location = 'http://localhost:8888/login'}
+                  onClick={() => {
+                    window.location = window.location.includes('localhost') 
+                    ? 'http://localhost:8888/login'
+                    : 'https://spotify-oauth-backend26.herokuapp.com/login'
+                  }}
                   style={{padding: '20px', 'fontSize': '50px', 'marginTop': '20px'}}>
                     Sign In with Spotify
                   </button>
