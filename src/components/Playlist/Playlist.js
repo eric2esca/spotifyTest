@@ -6,11 +6,11 @@ class Playlist extends Component{
         return(
             <div className='color'>
                  <img />
-                <h3>Playlist Name</h3>
+                <h3>{this.props.playlist.name}</h3>
                 <ul>
-                    <li>Song1</li>
-                    <li>Song2</li>
-                    <li>Song3</li>
+                    {this.props.playlist.songs.map(song => 
+                        <li>{song.name}</li>    
+                    )}
                 </ul>
             </div>
         );

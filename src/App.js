@@ -7,7 +7,7 @@ import './App.css';
 
 let fakeServerData = {
   user: {
-    name: 'David',
+    name: 'Eric',
     playlists: [
       {
         name: 'My favorites',
@@ -62,16 +62,16 @@ class App extends Component{
         <h1>House Tunes v0.0.1</h1>
         {this.state.serverData.user ?
         <div>
-          <h1 style={{'font-size': '54px'}}>
+          <h1 style={{'fontSize': '54px'}}>
             {this.state.serverData.user.name}'s Playlists
           </h1>
           <PlaylistCounter playlists={this.state.serverData.user.playlists}/>
           <HoursCounter playlists={this.state.serverData.user.playlists}/>
           <Filter/>
-          <Playlist/>
-          <Playlist/>
-          <Playlist/>
-          <Playlist/>
+          {this.state.serverData.user.playlists.map( playlist => 
+            <Playlist playlist={playlist}/>
+          )
+          }
         </div> : <h1>Loading...</h1>
         }
       </div>
