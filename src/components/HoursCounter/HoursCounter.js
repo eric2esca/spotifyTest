@@ -11,7 +11,7 @@ class HoursCounter extends Component {
       }, 0)
       return (
         <div className='counter'>
-          <h2>{Math.round(totalDuration/60)} hours</h2>
+          <h2>{(totalDuration/60/60).toFixed(2)} hours</h2>
         </div>
       );
     }
